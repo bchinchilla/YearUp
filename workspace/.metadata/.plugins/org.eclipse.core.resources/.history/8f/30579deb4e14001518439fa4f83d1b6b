@@ -1,0 +1,8 @@
+
+public class Programmer extends Worker
+{
+	void DoWork()
+	{
+		System.out.println("I fixed a bug");
+	}
+}

@@ -10,10 +10,41 @@ public class DayOfWeek
 		System.out.println("I read this day of the week " + day);
 		
 		DayOfWeek dayOfWeekEvaluator = new DayOfWeek();
+		dayOfWeekEvaluator.EvaluatingDayOfWeekUsingSwitchStatements(day);
 		dayOfWeekEvaluator.EvaluateDayOfWeek(day);
 		
 		scanner.close();
 	}
+	void EvaluatingDayOfWeekUsingSwitchStatements(String dayOfWeek)
+	{
+		if (dayOfWeek != null)
+		{
+			String lowerCaseDayOfWeek = dayOfWeek.toLowerCase();
+			System.out.println("I converted it to: " + lowerCaseDayOfWeek);
+			
+			switch(lowerCaseDayOfWeek)
+			{
+			case("monday"):
+			case("tuesday"):
+			case("wednesday"):
+			case("thursday"):
+			case("friday"):
+			{
+				System.out.println(" It is a weekday, I have to go to work ");
+				break;
+			}
+			case("saturday"):
+			case("sunday"):
+			{
+				System.out.println(" It is a weekend, yay!!! ");
+				break;
+			}
+			default:
+				System.out.println(" This is not a valid day ");
+			}
+		}
+	}
+	
 	void EvaluateDayOfWeek(String dayOfWeek)
 	{
 		if (dayOfWeek != null)

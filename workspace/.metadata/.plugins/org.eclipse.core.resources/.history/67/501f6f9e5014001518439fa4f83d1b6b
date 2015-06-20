@@ -1,0 +1,10 @@
+
+public class Worker 
+{
+	protected String m_work = null;
+	
+	void DoWork()
+	{
+		System.out.println(m_work);
+	}
+}

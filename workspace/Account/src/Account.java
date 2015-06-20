@@ -1,10 +1,10 @@
 
 public class Account 
 	{
-		private int m_accountId = -1;
+		public int m_accountId = -1;
 		private String m_accountName;
 		private int m_customerId = -1;
-		private double m_amount = 0.0;
+		public double m_amount = 0.0;
 
 		public Account(int accountId, String accountName, int customerId)
 		{
@@ -50,7 +50,7 @@ public class Account
 		private void SetCustomerId(int customerId)
 		{
 			m_customerId = customerId;
-		}
+	              	}
 
 		public int GetCustomerId()
 		{

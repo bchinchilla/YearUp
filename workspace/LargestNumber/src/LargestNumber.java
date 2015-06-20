@@ -45,7 +45,7 @@ public class LargestNumber
 		}
 		else
 		{
-			System.out.println("You gve me a null array ");
+			System.out.println("You gave me a null array ");
 		}
 	}
 	

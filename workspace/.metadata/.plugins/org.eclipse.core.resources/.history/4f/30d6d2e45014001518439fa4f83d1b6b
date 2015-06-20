@@ -1,0 +1,31 @@
+
+public class Worker 
+{
+	protected String m_work = null;
+	
+	void DoWork()
+	{
+		System.out.println(m_work);
+	}
+	
+	public static void main(String[] args)
+	{
+		Worker Noob = new Worker();
+		Noob.DoWork();
+		
+		Doctor DrMario = new Doctor();
+		DrMario.DoWork();
+		
+		Surgeon Shiek = new Surgeon();
+		Shiek.DoWork();
+		
+		Lawyer Marth = new Lawyer();
+		Marth.DoWork();
+		
+		Programmer Lucas = new Programmer();
+		Lucas.DoWork();
+		
+		WebProgrammer Ness = new WebProgrammer();
+		Ness.DoWork();
+	}
+}

@@ -1,0 +1,13 @@
+
+public class Surgeon extends Doctor
+{
+	Surgeon()
+	{
+		m_work = "I do plasic surgery";
+	}
+	
+	void DoWork()
+	{
+		System.out.println(m_work);
+	}
+}

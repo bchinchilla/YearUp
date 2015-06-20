@@ -1,0 +1,11 @@
+/**
+ * 
+ */
+
+/**
+ * @author bchinchilla116
+ *
+ */
+public interface ITaxPayer {
+
+}

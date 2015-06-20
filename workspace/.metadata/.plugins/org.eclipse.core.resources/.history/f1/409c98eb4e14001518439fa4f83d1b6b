@@ -1,0 +1,8 @@
+
+public class WebProgrammer extends Programmer
+{
+	void DoWork()
+	{
+		System.out.println("I made a website today");
+	}
+}

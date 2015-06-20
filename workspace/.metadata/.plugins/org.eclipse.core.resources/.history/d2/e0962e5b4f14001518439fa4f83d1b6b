@@ -1,0 +1,12 @@
+
+public class WebProgrammer extends Programmer
+{
+	WebProgrammer()
+	{
+		m_work = "I make websites";
+	}
+	void DoWork()
+	{
+		System.out.println(m_work);
+	}
+}

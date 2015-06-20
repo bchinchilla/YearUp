@@ -1,0 +1,12 @@
+
+public class Lawyer extends Worker
+{
+	Lawyer()
+	{
+		m_work = "I argued a case in court";
+	}
+	void DoWork()
+	{
+		System.out.println(m_work);
+	}
+}
