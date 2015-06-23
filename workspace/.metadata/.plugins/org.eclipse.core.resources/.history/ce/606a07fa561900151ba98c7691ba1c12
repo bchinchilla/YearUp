@@ -2,7 +2,6 @@
 
 public class ExceptionCentral 
 {
-	//THIS IS THE EXAMPLE CODE, MINE IS BELOW
 	/*public static void main(String[] args)
 	{
 		ExceptionCentral exceptionCentral = new ExceptionCentral();
@@ -69,14 +68,11 @@ public class ExceptionCentral
 			nullPtrEx.printStackTrace();
 		}
 	}*/
-	
-	
-	//MY CODE IS BELOW
 	public static void main(String []args)
 	{
 		ExceptionCentral Exception = new ExceptionCentral();
-		Exception.Division(10, 0);
-		Exception.NullString();
+		//Exception.Division(10, 0);
+		//Exception.NullString();
 		
 		try
 		{
@@ -95,15 +91,6 @@ public class ExceptionCentral
 		{
 			System.err.println("NullPointerException: " + e.getMessage());
 		}
-		
-		try
-		{
-			Exception.Array(null);
-		}
-		catch(ArrayIndexOutOfBoundsException e)
-		{
-			System.err.println("ArrayIndexOutOfBoundsException: " + e.getMessage());
-		}
 	}
 	
 	int Division(int numerator, int denominator) throws ArithmeticException
@@ -121,19 +108,11 @@ public class ExceptionCentral
 		System.out.println(S.toString());
 	}
 	
-	void Array(int[] array)
+	/*void ArrayIndexOutOfBoundsException()
 	{
-		try
-		{
-			for (int i = 0; i < 3; i++)
-			{
-				System.out.println(array[i]);
-			}
-		}
-		catch(ArrayIndexOutOfBoundsException e)
-		{
-			System.out.println("ArrayIndexOutOfBoundsException: " + e.getMessage());
-		}
-	}
+		int[] array = {1,2,3,4,5};
+		
+		return
+	}*/
 	
  }

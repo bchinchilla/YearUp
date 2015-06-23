@@ -2,7 +2,6 @@
 
 public class ExceptionCentral 
 {
-	//THIS IS THE EXAMPLE CODE, MINE IS BELOW
 	/*public static void main(String[] args)
 	{
 		ExceptionCentral exceptionCentral = new ExceptionCentral();
@@ -69,14 +68,11 @@ public class ExceptionCentral
 			nullPtrEx.printStackTrace();
 		}
 	}*/
-	
-	
-	//MY CODE IS BELOW
 	public static void main(String []args)
 	{
 		ExceptionCentral Exception = new ExceptionCentral();
-		Exception.Division(10, 0);
-		Exception.NullString();
+		//Exception.Division(10, 0);
+		//Exception.NullString();
 		
 		try
 		{

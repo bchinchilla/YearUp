@@ -2,7 +2,6 @@
 
 public class ExceptionCentral 
 {
-	//THIS IS THE EXAMPLE CODE, MINE IS BELOW
 	/*public static void main(String[] args)
 	{
 		ExceptionCentral exceptionCentral = new ExceptionCentral();
@@ -69,71 +68,26 @@ public class ExceptionCentral
 			nullPtrEx.printStackTrace();
 		}
 	}*/
-	
-	
-	//MY CODE IS BELOW
 	public static void main(String []args)
 	{
 		ExceptionCentral Exception = new ExceptionCentral();
-		Exception.Division(10, 0);
+		//Exception.Division(10, 0);
 		Exception.NullString();
-		
-		try
-		{
-			Exception.Division(10, 0);
-		}
-		catch(ArithmeticException e)
-		{
-			System.err.println("ArithmeticException: " + e.getMessage());
-		}
-		
-		try
-		{
-			Exception.NullString();
-		}
-		catch(NullPointerException e)
-		{
-			System.err.println("NullPointerException: " + e.getMessage());
-		}
-		
-		try
-		{
-			Exception.Array(null);
-		}
-		catch(ArrayIndexOutOfBoundsException e)
-		{
-			System.err.println("ArrayIndexOutOfBoundsException: " + e.getMessage());
-		}
 	}
 	
-	int Division(int numerator, int denominator) throws ArithmeticException
+	/*int Division(int numerator, int denominator) throws ArithmeticException
 	{
 		numerator = 10;
 		denominator = 0;
 		
 		int Result = numerator/denominator;
 		return Result;
-	}
+	}*/
 	
 	void NullString() throws NullPointerException
 	{
-		String S = null;
-		System.out.println(S.toString());
-	}
-	
-	void Array(int[] array)
-	{
-		try
-		{
-			for (int i = 0; i < 3; i++)
-			{
-				System.out.println(array[i]);
-			}
-		}
-		catch(ArrayIndexOutOfBoundsException e)
-		{
-			System.out.println("ArrayIndexOutOfBoundsException: " + e.getMessage());
-		}
+		String S = "null";
+		System.out.println(S);
 	}
 	
  }
