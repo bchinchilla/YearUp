@@ -1,8 +1,0 @@
-
-public class Surgeon extends Doctor
-{
-	void DoWork()
-	{
-		System.out.println("I do plastic surgery");
-	}
-}

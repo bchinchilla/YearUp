@@ -1,8 +1,0 @@
-
-public class Doctor extends Worker
-{
-	void DoWork()
-	{
-		System.out.println("I take care of the sick");
-	}
-}

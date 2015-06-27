@@ -1,0 +1,18 @@
+package com.makario.example;
+
+import java.io.BufferedReader;
+
+public class FileIO {
+
+	public static void main(String[] args) 
+	{
+		
+	}
+	
+	public static void Read()
+	{
+		FileReader fileReader = new FileReader(“C:\readme.txt”); 
+		BufferedReader bufferedReader = new BufferedReader(fileReader );
+	}
+
+}
