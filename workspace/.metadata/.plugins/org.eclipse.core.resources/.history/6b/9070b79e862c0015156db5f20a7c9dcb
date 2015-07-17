@@ -1,0 +1,249 @@
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+import javax.swing.JComboBox;
+
+import java.awt.Font;
+
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import java.util.GregorianCalendar;
+
+
+public class CalendarApplication 
+{
+	//data variable
+	private DefaultTableModel m_defTblModel = new DefaultTableModel();
+	private int m_realMonth = -1;
+	private int m_realYear = -1;
+	private int m_realDay = -1;
+	private int m_currentMonth = -1;
+	private int m_currentYear = -1;
+	
+	//UI components
+	private JButton btnPrev = null;
+	private JButton btnNext= null;
+	private JFrame frame;
+	private JTable daysTable;
+	JLabel lblMonth = null;
+	JComboBox comboBoxYear = null;
+	
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					CalendarApplication window = new CalendarApplication();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public CalendarApplication() 
+	{
+		GregorianCalendar cal = new GregorianCalendar(); //Create calendar
+		m_realDay = cal.get(GregorianCalendar.DAY_OF_MONTH); //Get day
+		m_realMonth = cal.get(GregorianCalendar.MONTH); //Get month
+		m_realYear = cal.get(GregorianCalendar.YEAR); //Get year
+		m_currentMonth = m_realMonth; //Match month and year
+		m_currentYear = m_realYear;
+		
+
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() 
+	{
+		frame = new JFrame();
+		frame.setBounds(100, 100, 650, 460);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(10, 26, 614, 385);
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		lblMonth = new JLabel("");
+		lblMonth.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMonth.setBounds(179, 6, 79, 17);
+		lblMonth.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		panel.add(lblMonth);
+		
+		btnPrev = new JButton("<<Previous");
+		btnPrev.setBounds(50, 5, 104, 23);
+		btnPrev.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				
+				if (m_currentMonth == 0)
+				{ //Back one year
+					m_currentMonth = 11;
+					m_currentYear = -1;
+				}
+				else
+				{ //Back one month
+					m_currentMonth -= 1;
+				}
+
+				refreshCalendar(m_currentMonth, m_currentYear);
+
+			}
+		});
+		panel.add(btnPrev);
+		
+		btnNext = new JButton("Next>>");
+		btnNext.setBounds(280, 5, 104, 23);
+		btnNext.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if (m_currentMonth == 0)
+				{ //Back one year
+					m_currentMonth = 0;
+					m_currentYear = +1;
+				}
+				else
+				{ //Back one month
+					m_currentMonth += 1;
+				}
+
+				refreshCalendar(m_currentMonth, m_currentYear);
+
+			}
+		});
+		panel.add(btnNext);
+		
+		JLabel lblChangeYear = new JLabel("Change Year:");
+		lblChangeYear.setHorizontalAlignment(SwingConstants.CENTER);
+		lblChangeYear.setBounds(429, 6, 88, 19);
+		lblChangeYear.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		panel.add(lblChangeYear);
+		
+		JComboBox comboBoxYear = new JComboBox();
+		
+		for (int i = m_realYear-100; i <= m_realYear+100; i++)
+		{
+			comboBoxYear.addItem(String.valueOf(i));
+		}
+		comboBoxYear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if (comboBoxYear.getSelectedItem() != null)
+				{
+					String b = comboBoxYear.getSelectedItem().toString();
+					m_currentYear = Integer.parseInt(b); //Get the numeric value
+					refreshCalendar(m_currentMonth, m_currentYear); //Refresh
+				}
+			}
+		});
+		comboBoxYear.setBounds(527, 7, 77, 23);
+		panel.add(comboBoxYear);
+		
+		
+		
+		JScrollPane scrollPane = new JScrollPane(daysTable);
+		scrollPane.setBounds(10, 366, 594, -326);
+		panel.add(scrollPane);
+		
+		daysTable = new JTable(m_defTblModel);
+		scrollPane.setViewportView(daysTable);
+		//daysTable.setBounds(562, 276, -473, -153);
+
+		String[] headers = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"}; //All headers
+		
+		for (int i=0; i<7; i++)
+		{
+		   m_defTblModel.addColumn(headers[i]);
+		}
+		
+		daysTable.setColumnSelectionAllowed(true);
+		daysTable.setRowSelectionAllowed(true);
+		daysTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+		//Set row/column count
+		daysTable.setRowHeight(38);
+		m_defTblModel.setColumnCount(7);
+		m_defTblModel.setRowCount(6);
+
+		daysTable.getParent().setBackground(daysTable.getBackground());
+		refreshCalendar(m_realMonth, m_realYear);
+
+		
+		
+		refreshCalendar(m_currentMonth, m_currentYear);
+
+
+	}
+	
+	public void refreshCalendar(int monthIndex, int year)
+	{
+		String[] monthsList = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+		
+		int numberOfDays= -1;  //Number Of Days
+		int startOfMonth = -1; //Start Of Month
+		
+		btnPrev.setEnabled(true); //Enable buttons at first
+		btnNext.setEnabled(true);
+		
+		if ((monthIndex == 0) && (year <= m_realYear - 100))
+		{
+			//A month before January 100 years ago cannot be reached
+			btnPrev.setEnabled(false);
+		}
+
+		if ((monthIndex == 11) && (year >= m_realYear + 100))
+		{
+			//A month after December 100 years later cannot be reached
+			btnNext.setEnabled(false);
+		}
+		
+		lblMonth.setText(monthsList[monthIndex]); //Refresh the month label (at the top)
+		comboBoxYear.setSelectedItem(String.valueOf(year)); //Select the correct year in the combo box
+		
+		GregorianCalendar cal = new GregorianCalendar(year, monthIndex, 1);
+		numberOfDays = cal.getActualMaximum(GregorianCalendar.DAY_OF_MONTH);
+		startOfMonth = cal.get(GregorianCalendar.DAY_OF_WEEK);
+
+		//Clear table
+		for (int i=0; i<6; i++)
+		{
+			for (int j=0; j<7; j++)
+			{
+				m_defTblModel.setValueAt(null, i, j);
+			}
+		}
+
+		for (int i=1; i<=numberOfDays; i++)
+		{
+			int row = new Integer((i+startOfMonth-2)/7);
+			int column  =  (i+startOfMonth-2)%7;
+			m_defTblModel.setValueAt(i, row, column);
+		}
+
+	}
+}
